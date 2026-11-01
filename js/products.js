@@ -5,7 +5,7 @@
     1. Add an entry below (copy the commented example).
     2. Copy products/_template.html to products/<slug>.html and change
        data-product, the <title> and the description at the top of that file.
-  While a list is empty, its page shows a "locked" coming-soon slot with a sign-up link.
+  Each list ends with a "locked" coming-soon slot teasing what's next.
 
   Fields
     slug        Short id used in the page file name and links (required)
@@ -32,6 +32,24 @@
     hidden      true to keep it here without showing it anywhere
 */
 window.PRODUCTS = [
+  {
+    // TODO: check the wording and features before publishing.
+    slug: "pixel-studio",
+    type: "tool",
+    name: "Pixel Studio",
+    status: "Coming soon",
+    tagline: "AI pixel art generator and animator for game development.",
+    summary: "Describe a character and Pixel Studio draws it as a pixel-art sprite, then animates it: idles, attacks, jumps, spellcasts and more. Built for game developers who need a full cast of animated characters without drawing every frame by hand.",
+    cover: "img/pixel-studio-cover.png",
+    coverBg: "#261D1E",
+    genre: "Pixel art & animation",
+    platforms: ["Web UI"],
+    highlights: [
+      { title: "Characters from a prompt", text: "Describe who you need and get a pixel-art character in 8-, 16- or 32-bit style." },
+      { title: "Animation sets", text: "Idle, attacks, jump, jump attack, spellcast, use item, take damage and death, all on-model with your character." },
+      { title: "Made for game dev", text: "Built to produce sprites you can drop straight into a game, not one-off pictures." }
+    ]
+  },
   // Example: remove the // from these lines and fill them in.
   // {
   //   slug: "my-game",

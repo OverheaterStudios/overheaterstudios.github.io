@@ -189,6 +189,9 @@ p { margin: 0; }
 .locked-body p:not(.pixel) { color: var(--slate); font-size: 1rem; }
 .locked-body .btn { margin-top: .6rem; }
 .locked-label { color: var(--ember); }
+.soon { display: inline-block; margin-top: .6rem; color: var(--ember); border: 2px dashed currentColor; border-radius: 6px; padding: .55rem .75rem; }
+.locked-wide .soon, .soon-lg { color: var(--filament); }
+.soon-lg { margin-top: 0; font-size: .75rem; padding: .8rem 1rem; }
 .locked-wide {
   flex-direction: row; align-items: stretch; background: var(--ink); color: var(--white);
   border: 3px solid var(--ink); box-shadow: var(--shadow-hot);

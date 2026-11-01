@@ -35,14 +35,14 @@ Plain HTML, CSS and JavaScript with no build step: open `index.html` in a browse
 2. Copy `products/_template.html` to `products/<slug>.html` and change `data-product`, the `<title>` and the description.
 
 It then shows up on the home page, its Games or Tools page and in the contact form.
-While a list is empty, its page shows a "locked" coming-soon slot with a sign-up button.
+Each list ends with a "locked" coming-soon slot teasing what's next.
 Files starting with `_` aren't published by GitHub Pages, so the template stays private.
 
 ## Selling and store links
 
 - `links`: buttons to Steam, itch.io, a web build, a download… The first one is the main button.
 - `checkout`: a hosted checkout link (Stripe Payment Link, Lemon Squeezy, itch.io) adds a "Buy" button.
-- With neither, the page shows "Notify me at launch".
+- With neither, the page shows its status (for example "Coming soon") instead of a button.
 
 ## Contact form
 

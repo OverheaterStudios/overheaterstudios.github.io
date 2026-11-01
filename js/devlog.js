@@ -17,7 +17,7 @@ window.DEVLOG = [
     tag: "Studio",
     body: [
       "Overheater Studios has a new home on the web. This is where our games and tools will live, and where we'll post updates as we build them.",
-      "Nothing to play just yet, but things are heating up. Hit the contact page and ask to be notified, and you'll hear from us when the first release is ready."
+      "Nothing to play just yet, but things are heating up. First up is Pixel Studio, a pixel art generator and animator for game development. We'll post progress here as it comes together."
     ]
   }
 ];

@@ -75,15 +75,21 @@ function card(p) {
     </a>`;
 }
 function lockedSlot(type, wide) {
-  const noun = NOUN[type] || "release";
+  const more = PRODUCTS.some(p => p.type === type);
+  const title = type === "tool"
+    ? (more ? "More tools are heating up." : "Tools are heating up.")
+    : (more ? "Next game: in the forge." : "Our first game is in the forge.");
+  const text = type === "tool"
+    ? "We're building the tools we wish existed. Follow the devlog for progress."
+    : "We're building it right now. Follow the devlog for progress.";
   return `
     <div class="locked${wide ? " locked-wide" : ""}">
       <div class="locked-art" aria-hidden="true"><span class="pixel">?</span></div>
       <div class="locked-body">
         <p class="pixel locked-label">Locked</p>
-        <h3>${type === "tool" ? "Tools are heating up." : "Next " + noun + ": in the forge."}</h3>
-        <p>${type === "tool" ? "We're building tools we wish existed. Get pinged when the first one drops." : "We're building it right now. Get notified the moment it's playable."}</p>
-        <a class="btn btn-hot" href="${contactUrl("updates")}">Notify me</a>
+        <h3>${title}</h3>
+        <p>${text}</p>
+        <p class="soon pixel">Coming soon</p>
       </div>
     </div>`;
 }
@@ -114,6 +120,7 @@ document.querySelectorAll("[data-shelf]").forEach(root => {
     return;
   }
   document.body.setAttribute("data-page", p.type === "tool" ? "tools" : "games");
+  document.querySelectorAll("#site-nav a[aria-current]").forEach(a => a.removeAttribute("aria-current"));
   const nav = document.querySelector(`#site-nav a[href$="${p.type === "tool" ? "tools" : "games"}.html"]`);
   if (nav) nav.setAttribute("aria-current", "page");
 
@@ -121,7 +128,7 @@ document.querySelectorAll("[data-shelf]").forEach(root => {
   const buttons = [
     ...links.map((l, i) => `<a class="btn ${i === 0 ? "btn-hot" : "btn-ghost"}" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`),
     p.checkout ? `<a class="btn ${links.length ? "btn-ghost" : "btn-hot"}" href="${esc(p.checkout)}">Buy${p.price ? " for " + esc(p.price) : ""}</a>` : "",
-    !links.length && !p.checkout ? `<a class="btn btn-hot" href="${contactUrl("updates")}">Notify me at launch</a>` : ""
+    !links.length && !p.checkout ? `<span class="soon soon-lg pixel">${esc(p.status || "Coming soon")}</span>` : ""
   ].join("");
   const shots = p.screenshots || [];
 
@@ -132,7 +139,7 @@ document.querySelectorAll("[data-shelf]").forEach(root => {
           ${p.cover ? `<img src="${esc(asset(p.cover))}" alt="${esc(p.name)} cover art">` : `<img class="cover-fallback" src="${ROOT}img/overheater-mark.svg" alt="">`}
         </div>
         <div>
-          <p class="crumbs"><a href="${listUrl(p.type)}">${p.type === "tool" ? "Tools" : "Games"}</a>${p.status ? ` <span class="tag-status pixel">${esc(p.status)}</span>` : ""}</p>
+          <p class="crumbs"><a href="${listUrl(p.type)}">${p.type === "tool" ? "Tools" : "Games"}</a>${p.status && (links.length || p.checkout) ? ` <span class="tag-status pixel">${esc(p.status)}</span>` : ""}</p>
           <h1>${esc(p.name)}</h1>
           <p class="lede">${esc(p.tagline)}</p>
           ${p.summary ? `<p class="product-summary">${esc(p.summary)}</p>` : ""}
@@ -185,8 +192,9 @@ document.querySelectorAll("[data-shelf]").forEach(root => {
 
     <section class="cta-band">
       <div class="wrap">
-        <h2>${links.length || p.checkout ? `Ready to ${p.type === "tool" ? "try" : "play"} ${esc(p.name)}?` : `Don't miss the launch.`}</h2>
-        <div class="hero-actions">${buttons}<a class="btn btn-ghost" href="${listUrl(p.type)}">More ${p.type === "tool" ? "tools" : "games"}</a></div>
+        <h2>${links.length || p.checkout ? `Ready to ${p.type === "tool" ? "try" : "play"} ${esc(p.name)}?` : `${esc(p.name)} is coming soon.`}</h2>
+        ${links.length || p.checkout ? "" : `<p class="cta-sub">Follow the devlog for progress as it heats up.</p>`}
+        <div class="hero-actions">${links.length || p.checkout ? buttons : `<a class="btn btn-hot" href="${ROOT}devlog.html">Read the devlog</a>`}<a class="btn btn-ghost" href="${listUrl(p.type)}">More ${p.type === "tool" ? "tools" : "games"}</a></div>
       </div>
     </section>`;
 })();
@@ -250,7 +258,7 @@ document.querySelectorAll("[data-project-list]").forEach(root => {
   const games = PRODUCTS.filter(p => p.type === "game"), tools = PRODUCTS.filter(p => p.type === "tool");
   const group = (label, list) => list.length ? `<optgroup label="${label}">${list.map(p => `<option value="${esc(p.slug)}">${esc(p.name)}</option>`).join("")}</optgroup>` : "";
   topic.innerHTML =
-    `<option value="updates">Tell me when new games & tools drop</option>
+    `<option value="general">General question</option>
      ${group("Games", games)}${group("Tools", tools)}
      <option value="support">Bug report or support</option>
      <option value="press">Press, creators & streamers</option>

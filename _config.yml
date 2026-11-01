@@ -1,0 +1,5 @@
+# GitHub Pages runs this repo through Jekyll by default. The site itself is plain
+# HTML and doesn't use Jekyll features; this only keeps notes out of the live site.
+exclude:
+  - CLAUDE.md
+  - README.md
