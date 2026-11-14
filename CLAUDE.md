@@ -41,7 +41,7 @@ Open `index.html` directly in a browser to preview everything. The only exceptio
 | `js/products.js` | **All games and tools.** Fields are documented at the top: `type`, `status`, `cover`, `links` (store buttons), `price`, `checkout`, `trailer`, `screenshots`, `highlights`, `specs`, `faq`, `hidden` |
 | `js/devlog.js`, `js/projects.js` | Devlog posts and past projects |
 | `css/site.css` | Everything visual. Design tokens are at the top |
-| `img/` | Logos (SVG), favicon, Pixel Studio cover, Drive-A-Logue image |
+| `img/` | Logos (SVG), favicon, Notfi Tunnels cover and screenshots (`img/notfi-tunnels/`), Drive-A-Logue image |
 | `README.md` | Owner-facing "where to change things" guide. Keep it in sync with changes |
 | `_config.yml` | Only excludes `CLAUDE.md` and `README.md` from GitHub Pages' default processing so they aren't published |
 
@@ -76,13 +76,14 @@ Favicons (`favicon.ico`, `apple-touch-icon.png`) are rendered from the mark.
 
 ---
 
-## Current state (Nov 1, 2026)
+## Current state (Nov 13, 2026)
 
-- Commit `3226502` ("Rebuild site as indie games & tools studio") is pushed and live.
-- **Uncommitted, ready to commit:** Pixel Studio added as the first tool (`js/products.js`, `products/pixel-studio.html`, `img/pixel-studio-cover.png`); every "Notify me" removed (`js/site.js`, `index.html`, `contact.html`, `js/devlog.js`, `css/site.css`, `README.md`); plus this `CLAUDE.md` and `_config.yml`.
+- Live: `384b27c` added Pixel Studio and removed every "Notify me" button.
+- Since then Pixel Studio was **cancelled and removed**, and **Notfi Tunnels** replaced it as the only tool.
 
 ### Content on the site
-- **Pixel Studio** (tool, "Coming soon"): an AI pixel art generator and animator for game development. It's the owner's own project (separate private repo `OverheaterStudios/pixel-studio`): it generates 8/16/32-bit characters with animation sets (idle, attacks, jump, jump attack, spellcast, use item, take damage, death) and is planned as a Docker image with a web UI. The cover is a pixel-art version of the flame mark, a placeholder until there are real screenshots.
+- **Notfi Tunnels** (tool, "Closed beta"): the owner's self-hosted tunnel server and CLI, like ngrok on your own server. HTTPS and TCP tunnels, device agents that open SSH or a web UI on demand, a web dashboard, a local request inspector and a .NET client library. Built on .NET 10. Its only button is "Visit the site" (https://jerhemy.com/notfi-tunnels/). There is deliberately no Download button while it's a closed beta, even though the client releases are public on `jerhemy/notfi-tunnels` (the source is the private `jerhemy/notfi-tunnels-code`, checked out at `D:\github\notfi-tunnels`). The cover is its mark on navy, and the screenshots are copied from that repo's `site/assets/screens/`. Update the "Latest release" spec when a new version ships.
+- **Pixel Studio was cancelled** (Nov 2026). Don't bring it back.
 - **No games yet.** The home and Games pages show a locked "Our first game is in the forge" slot.
 - **Previously shipped:** Drive-A-Logue (a client mobile app for a family-conversation card game, client Adam Brooks), marked "Acquired". It has since been sold to another company, so there's no link.
 - **Devlog:** one drafted post, "The forge is lit" (2026-10-31).
@@ -90,8 +91,7 @@ Favicons (`favicon.ico`, `apple-touch-icon.png`) are rendered from the mark.
 ### Open TODOs for the owner (don't fill these in without asking)
 - `SETTINGS.email` in `js/site.js` is a placeholder (`hello@overheater.com`, which may not exist). This address is shown publicly.
 - `SETTINGS.formspreeId` is empty, so the form falls back to `mailto:`.
-- Drafted copy to review: the About page, the devlog post, Pixel Studio's wording and its "Web UI" tag, and Drive-A-Logue's "Mobile game app" label.
-- Real Pixel Studio screenshots or a GIF to replace the placeholder cover.
+- Drafted copy to review: the About page, the devlog post, Notfi Tunnels' wording, and Drive-A-Logue's "Mobile game app" label.
 - How the owner wants release notifications to work (a mailing list? Discord?). Until then, no sign-up buttons.
 
 ---
